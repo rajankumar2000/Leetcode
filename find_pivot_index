@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int n=nums.size();
+        vector<int> pfix_sum(n);
+        int sum=0;
+        for(int i=0;i<n;i++){
+             sum+=nums[i];
+            pfix_sum[i]=sum;
+        }
+        // for(auto x:pfix_sum){
+        //     cout<<x<<" ";
+        // }
+        if(pfix_sum[0]==pfix_sum[n-1]){
+            return 0;
+        }
+       
+        for(int i=1;i<n-1;i++){
+            if(pfix_sum[i-1]==pfix_sum[n-1]-pfix_sum[i])
+                return i;
+        }
+         if(pfix_sum[n-2]==0){
+            return n-1;
+        }
+        return -1;
+       
+    }
+};
